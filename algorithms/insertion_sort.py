@@ -20,7 +20,7 @@ class InsertionSort(SortAlgorithm):
 
         :param time_tick: Die Zeitverzögerung zwischen den Visualisierungsschritten des Sortierprozesses.
         """
-        self.timeTick = time_tick
+        super().__init__(time_tick) # Ruft den Konstruktor der Basisklasse auf
 
     def sort(self, graph_manager: GraphManager):
         """
@@ -44,7 +44,7 @@ class InsertionSort(SortAlgorithm):
             self.data[k] = temp  # Fügt das aktuelle Element an der richtigen Position ein
             # Visualisiert den aktuellen Zustand des Arrays
             graph_manager.notify(self.data, [YELLOW if x == k or x == i else BLUE for x in range(len(self.data))])
-            time.sleep(self.timeTick)  # Wartet für die Visualisierung
+            time.sleep(self.time_tick)  # Wartet für die Visualisierung
 
         # Benachrichtigt den GraphManager nach dem vollständigen Sortieren
         graph_manager.notify(self.data, [BLUE for _ in range(len(self.data))])

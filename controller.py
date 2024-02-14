@@ -50,9 +50,10 @@ class Controller:
         """
         size = array_size.get()  # Größe der zu generierenden Liste
         self.data = random.sample(range(1, size + 1), size)  # Erzeugt eine Liste einzigartiger Zahlen
-        self.drawData(self.data, [BLUE for x in range(len(self.data))], canvas, window)  # Visualisiert die generierte Liste
+        self.drawData(self.data, [BLUE for x in range(len(self.data))], canvas,
+                      window)  # Visualisiert die generierte Liste
 
-    def set_speed(self, speed_menu):
+    def set_speed(self, speed_menu=None):
         """
         Bestimmt die Geschwindigkeit der Visualisierung basierend auf der Benutzerauswahl.
 
@@ -60,6 +61,9 @@ class Controller:
         :return: Die gewählte Geschwindigkeit als Zeitverzögerung zwischen den Sortierschritten.
         """
         # Auswahl der Geschwindigkeit basierend auf der Menüauswahl
+
+        if speed_menu is None:
+            return 0.001
         if speed_menu.get() == SPEED_MENU_SLOW:
             return 0.3
         elif speed_menu.get() == SPEED_MENU_MEDIUM:

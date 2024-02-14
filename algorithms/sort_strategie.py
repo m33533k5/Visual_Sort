@@ -51,7 +51,7 @@ class Sort_Algorithm():
         """
         self.data = list(self.data_orig)  # Stellt die Originaldaten wieder her
 
-    def setTimeTick(self, time_tick):
+    def set_time_tick(self, time_tick):
         """
         Aktualisiert die Zeitverzögerung für die Visualisierung des Sortiervorgangs.
 

@@ -21,7 +21,7 @@ class QuickSort(SortAlgorithm):
 
         :param time_tick: Die Zeitverzögerung zwischen den Visualisierungsschritten des Sortierprozesses.
         """
-        self.timeTick = time_tick
+        super().__init__(time_tick) # Ruft den Konstruktor der Basisklasse auf
         self.steps = 0  # Zählt die Anzahl der durchgeführten Operationen während des Sortierens
 
     def partition(self, data, start, end):
@@ -78,7 +78,7 @@ class QuickSort(SortAlgorithm):
                                  [PURPLE if start <= x < pivot_position else YELLOW if x == pivot_position
                                  else DARK_BLUE if pivot_position < x <= end else BLUE for x in
                                   range(len(self.data))])
-            time.sleep(self.timeTick)
+            time.sleep(self.time_tick)
 
         graph_manager.notify(self.data, [BLUE for x in range(len(self.data))])  # Endgültige Visualisierung
         return self.steps

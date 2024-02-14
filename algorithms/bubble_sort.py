@@ -18,7 +18,7 @@ class BubbleSort(SortAlgorithm):
 
         :param time_tick: Die Zeitverzögerung zwischen den Sortierschritten für die Visualisierung.
         """
-        self.time_tick = time_tick
+        super().__init__(time_tick) # Ruft den Konstruktor der Basisklasse auf
 
     def sort(self, graph_manager: GraphManager):
         """

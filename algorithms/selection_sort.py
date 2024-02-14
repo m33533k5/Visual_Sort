@@ -20,7 +20,7 @@ class SelectionSort(SortAlgorithm):
 
         :param time_tick: Die Zeitverzögerung zwischen den Visualisierungsschritten des Sortierprozesses.
         """
-        self.timeTick = time_tick
+        super().__init__(time_tick) # Ruft den Konstruktor der Basisklasse auf
 
     def sort(self, graph_manager: GraphManager):
         """
@@ -47,7 +47,7 @@ class SelectionSort(SortAlgorithm):
 
             # Visualisiert den aktuellen Zustand des Arrays mit Farbcodierung
             graph_manager.notify(self.data, [YELLOW if x == minimum or x == i else BLUE for x in range(len(self.data))])
-            time.sleep(self.timeTick)  # Wartet für die Visualisierung
+            time.sleep(self.time_tick)  # Wartet für die Visualisierung
 
         # Endgültige Visualisierung nach Abschluss des Sortiervorgangs
         graph_manager.notify(self.data, [BLUE for x in range(len(self.data))])

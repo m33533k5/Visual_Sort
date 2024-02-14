@@ -20,7 +20,7 @@ class MergeSort(SortAlgorithm):
 
         :param time_tick: Die Zeitverzögerung zwischen den Visualisierungsschritten des Sortierprozesses.
         """
-        self.timeTick = time_tick
+        super().__init__(time_tick) # Ruft den Konstruktor der Basisklasse auf
         self.steps = 0  # Zählt die Anzahl der durchgeführten Operationen während des Sortierens
 
     def merge(self, data, start, mid, end):
@@ -90,5 +90,5 @@ class MergeSort(SortAlgorithm):
             # Visualisiert den aktuellen Zustand des Arrays
             graph_manager.notify(data, [PURPLE if start <= x <= mid else DARK_BLUE if mid < x <= end else BLUE for x in
                                         range(len(data))])
-            time.sleep(self.timeTick)
+            time.sleep(self.time_tick)
         return self.steps

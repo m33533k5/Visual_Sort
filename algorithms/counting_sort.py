@@ -21,7 +21,7 @@ class CountingSort(SortAlgorithm):
 
         :param time_tick: Die Zeitverzögerung zwischen den Visualisierungsschritten.
         """
-        self.time_tick = time_tick
+        super().__init__(time_tick) # Ruft den Konstruktor der Basisklasse auf
 
     def sort(self, graph_manager: GraphManager):
         """
