@@ -38,7 +38,7 @@ class Manager(ABC):
 
         :param data: Die geänderten Daten, die den Observers übermittelt werden.
         :param color_array: Eine Liste von Farben, die mit den Daten assoziiert sind.
-        :param time_tick: Die Zeitverzögerung, die für die Visualisierung verwendet wird.
+        :param time_tick: Die Verzögerung, die für die Visualisierung verwendet wird.
         """
         pass
 
@@ -55,7 +55,7 @@ class GraphManager(Manager):
         """
         self.data = []  # Der Zustand des Subjects, wichtig für alle Observer.
         self.color_array = []  # Zusätzliche Zustandsinformationen, wie Farbinformationen.
-        self.time_tick = None  # Zeitverzögerung für die Visualisierung.
+        self.time_tick = None  # Verzögerung für die Visualisierung.
         self.observers: List[Observer] = []  # Liste der registrierten Observer.
 
     def attach(self, observer: Observer) -> None:
@@ -79,7 +79,7 @@ class GraphManager(Manager):
         Benachrichtigt alle Observer über Zustandsänderungen, indem die `update`-Methode jedes Observers aufgerufen wird.
 
         :param data: Die geänderten Daten.
-        :param color_array: Die Liste der Farben, assoziiert mit den Daten.
+        :param color_array: Die Liste der Farben assoziiert mit den Daten.
         """
         # Aktualisiert den internen Zustand vor der Benachrichtigung.
         self.data = data

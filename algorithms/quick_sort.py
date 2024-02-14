@@ -15,14 +15,7 @@ class QuickSort(SortAlgorithm):
     als das Pivot vor diesem und alle Elemente größer als das Pivot dahinter stehen.
     """
 
-    def __init__(self, time_tick):
-        """
-        Initialisiert eine neue Instanz der QuickSort-Klasse.
-
-        :param time_tick: Die Zeitverzögerung zwischen den Visualisierungsschritten des Sortierprozesses.
-        """
-        super().__init__(time_tick) # Ruft den Konstruktor der Basisklasse auf
-        self.steps = 0  # Zählt die Anzahl der durchgeführten Operationen während des Sortierens
+    steps = 0  # Zählt die Anzahl der durchgeführten Operationen während des Sortierens
 
     def partition(self, data, start, end):
         """
@@ -55,6 +48,7 @@ class QuickSort(SortAlgorithm):
         :param graph_manager: Der GraphManager, der für die Visualisierung des Sortiervorgangs verwendet wird.
         :return: Die Anzahl der durchgeführten Schritte während des Sortierprozesses.
         """
+        self.steps = 0
         self.steps = self.quick_sort_helper(self.data, 0, len(self.data) - 1, graph_manager)
         return self.steps
 

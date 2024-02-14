@@ -15,14 +15,6 @@ class CountingSort(SortAlgorithm):
     effizient, wenn der maximale Wert des Arrays relativ klein ist im Vergleich zur Länge des Arrays.
     """
 
-    def __init__(self, time_tick):
-        """
-        Initialisiert eine neue Instanz der CountingSort-Klasse.
-
-        :param time_tick: Die Zeitverzögerung zwischen den Visualisierungsschritten.
-        """
-        super().__init__(time_tick) # Ruft den Konstruktor der Basisklasse auf
-
     def sort(self, graph_manager: GraphManager):
         """
         Führt den Counting-Sort-Algorithmus aus und visualisiert den Prozess.

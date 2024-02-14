@@ -53,24 +53,6 @@ class Controller:
         self.drawData(self.data, [BLUE for x in range(len(self.data))], canvas,
                       window)  # Visualisiert die generierte Liste
 
-    def set_speed(self, speed_menu=None):
-        """
-        Bestimmt die Geschwindigkeit der Visualisierung basierend auf der Benutzerauswahl.
-
-        :param speed_menu: Das Dropdown-Menü, aus dem die Geschwindigkeit ausgewählt wird.
-        :return: Die gewählte Geschwindigkeit als Zeitverzögerung zwischen den Sortierschritten.
-        """
-        # Auswahl der Geschwindigkeit basierend auf der Menüauswahl
-
-        if speed_menu is None:
-            return 0.001
-        if speed_menu.get() == SPEED_MENU_SLOW:
-            return 0.3
-        elif speed_menu.get() == SPEED_MENU_MEDIUM:
-            return 0.1
-        else:
-            return 0.001
-
     def sort(self, ui_components, steps, ranking, algo_list):
         """
         Führt den gewählten Sortieralgorithmus aus und aktualisiert das Ranking basierend auf der Anzahl der Schritte.

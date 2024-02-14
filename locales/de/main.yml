@@ -1,0 +1,28 @@
+window_title: Sortieralgorithmen Visualisierung
+speeds:
+  - Schnell
+  - Mittel
+  - Langsam
+label_algorithm: 'Algorithmus:'
+label_speed: 'Geschwindigkeit:'
+label_size: 'Größe:'
+label_steps: 'Schritte:'
+label_ranking: 'Rangliste:'
+button_generate: Erstelle Feld
+button_sort: Sortieren
+button_german_translation: Deutsch
+button_english_translation: Englisch
+tooltip_label_algorithm: Auswahl von Algorithmen
+tooltip_field_algorithm: Zur Auswahl stehende Algorithmen
+tooltip_label_speed: Auswahl der Geschwindigkeit
+tooltip_field_speed: Zur Auswahl stehende Geschwindigkeit
+tooltip_label_size: Größe des Feldes, das sortiert wird
+tooltip_field_size: Feld zur Einstellung der Feldgröße
+tooltip_label_steps: Schritte die benötigt wurden, um das Feld zu sortieren
+tooltip_field_steps: Anzahl an Schritte die benötigt wurden
+tooltip_label_ranking: Rangliste für Algorithmen
+tooltip_field_ranking: Werte der Rangliste
+tooltip_button_generate: Schaltfläche zum Erstellen eines Arrays mit zufällig generierten Werten
+tooltip_button_sort: Schaltfläche zum Starten des Sortiervorgangs
+tooltip_button_german: Schaltfläche um die Sprache auf deutsch zu ändern
+tooltip_button_english: Schaltfläche um die Sprache auf englisch zu ändern

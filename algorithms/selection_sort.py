@@ -14,14 +14,6 @@ class SelectionSort(SortAlgorithm):
     ersten unsortierten Element.
     """
 
-    def __init__(self, time_tick):
-        """
-        Initialisiert eine neue Instanz der SelectionSort-Klasse.
-
-        :param time_tick: Die Zeitverzögerung zwischen den Visualisierungsschritten des Sortierprozesses.
-        """
-        super().__init__(time_tick) # Ruft den Konstruktor der Basisklasse auf
-
     def sort(self, graph_manager: GraphManager):
         """
         Führt den Selection-Sort-Algorithmus aus und visualisiert jeden Schritt des Sortierprozesses.

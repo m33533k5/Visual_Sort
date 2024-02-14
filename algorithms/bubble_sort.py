@@ -12,14 +12,6 @@ class BubbleSort(SortAlgorithm):
     benachbarte Elemente vertauscht, wenn sie in der falschen Reihenfolge sind.
     """
 
-    def __init__(self, time_tick):
-        """
-        Initialisiert eine neue Instanz der BubbleSort-Klasse.
-
-        :param time_tick: Die Zeitverzögerung zwischen den Sortierschritten für die Visualisierung.
-        """
-        super().__init__(time_tick) # Ruft den Konstruktor der Basisklasse auf
-
     def sort(self, graph_manager: GraphManager):
         """
         Führt den Bubble-Sort-Algorithmus aus und visualisiert jeden Sortierschritt.

@@ -1,5 +1,6 @@
 from graphmanager.observer import Observer
 
+
 class Graph(Observer):
     """
     Eine konkrete Implementierung eines Observers, der für die Visualisierung von Daten

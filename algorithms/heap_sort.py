@@ -14,14 +14,6 @@ class HeapSort(SortAlgorithm):
     Ein Heap ist eine zumeist auf Bäumen basierende abstrakte Datenstruktur.
     """
 
-    def __init__(self, time_tick):
-        """
-        Initialisiert eine neue Instanz der HeapSort-Klasse.
-
-        :param time_tick: Die Zeitverzögerung zwischen den Visualisierungsschritten.
-        """
-        super().__init__(time_tick) # Ruft den Konstruktor der Basisklasse auf
-
     def heapify(self, data, n, i, steps):
         """
         Hilfsfunktion zum Umwandeln eines Arrays in einen Heap, beginnend mit dem Index i als Wurzel.

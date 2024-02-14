@@ -2,7 +2,8 @@ from abc import abstractmethod
 
 from graphmanager.graph_manager import GraphManager
 
-class Sort_Algorithm():
+
+class SortAlgorithm:
     """
     Eine abstrakte Basisklasse, die das Strategy-Designmuster für Sortieralgorithmen implementiert,
     sowie das Prototype-Pattern für die Initialisierung mit Daten.
@@ -16,23 +17,21 @@ class Sort_Algorithm():
     das Zurücksetzen der Daten auf ihren ursprünglichen Zustand.
     """
 
-    def __init__(self, time_tick):
+    def __init__(self):
         """
-        Initialisiert ein Sort_Algorithm-Objekt mit einer Zeitverzögerung für die Visualisierung.
+        Initialisiert ein Sort_Algorithm-Objekt mit einer Verzögerung für die Visualisierung.
 
-        :param time_tick: Die Zeitverzögerung zwischen den Sortierschritten.
         """
-        self.time_tick = time_tick  # Zeitverzögerung für die Visualisierung
+        self.time_tick = 0.001  # Verzögerung für die Visualisierung
         self.data = []  # Die zu sortierenden Daten
         self.data_orig = []  # Kopie der Originaldaten zur Wiederherstellung
 
     @abstractmethod
-    def sort(self, graph_manager: GraphManager, data):
+    def sort(self, graph_manager: GraphManager):
         """
         Abstrakte Methode, die von konkreten Sortieralgorithmen implementiert werden muss.
 
         :param graph_manager: Der GraphManager, der für die Visualisierung des Sortiervorgangs verwendet wird.
-        :param data: Die zu sortierenden Daten.
         """
         pass
 
@@ -53,8 +52,8 @@ class Sort_Algorithm():
 
     def set_time_tick(self, time_tick):
         """
-        Aktualisiert die Zeitverzögerung für die Visualisierung des Sortiervorgangs.
+        Aktualisiert die Verzögerung für die Visualisierung des Sortiervorgangs.
 
-        :param time_tick: Die neue Zeitverzögerung zwischen den Sortierschritten.
+        :param time_tick: Die neue Verzögerung zwischen den Sortierschritten.
         """
         self.time_tick = time_tick

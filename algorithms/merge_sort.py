@@ -13,15 +13,7 @@ class MergeSort(SortAlgorithm):
     Prinzip des Teile-und-Herrsche (Divide-and-Conquer) basiert. Der Algorithmus teilt das Array
     in Hälften, sortiert diese rekursiv und führt sie dann in einem Merge-Schritt zusammen.
     """
-
-    def __init__(self, time_tick):
-        """
-        Initialisiert eine neue Instanz der MergeSort-Klasse.
-
-        :param time_tick: Die Zeitverzögerung zwischen den Visualisierungsschritten des Sortierprozesses.
-        """
-        super().__init__(time_tick) # Ruft den Konstruktor der Basisklasse auf
-        self.steps = 0  # Zählt die Anzahl der durchgeführten Operationen während des Sortierens
+    steps = 0  # Zählt die Anzahl der durchgeführten Operationen während des Sortierens
 
     def merge(self, data, start, mid, end):
         """
@@ -67,6 +59,7 @@ class MergeSort(SortAlgorithm):
         :param graph_manager: Der GraphManager, der für die Visualisierung des Sortiervorgangs verwendet wird.
         :return: Die Anzahl der durchgeführten Schritte während des Sortierprozesses.
         """
+        self.steps = 0
         self.steps = self.merge_sort_helper(self.data, 0, len(self.data) - 1, graph_manager)
         graph_manager.notify(self.data, [BLUE for _ in range(len(self.data))])  # Endgültige Visualisierung
         return self.steps
