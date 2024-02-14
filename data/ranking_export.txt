@@ -1,0 +1,9 @@
+1. Counting Sort: 100 Schritte
+2. Counting Sort: 100 Schritte
+3. Counting Sort: 100 Schritte
+4. Heap Sort: 119 Schritte
+5. Quick Sort: 424 Schritte
+6. Merge Sort: 572 Schritte
+7. Insertion Sort: 658 Schritte
+8. Bubble Sort: 702 Schritte
+9. Selection Sort: 1272 Schritte
