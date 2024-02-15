@@ -16,7 +16,7 @@ from ui_components import UIComponents
 
 
 def main():
-    i18n.load_path.append("C:\\Users\\Niemandes\\Desktop\\Visual\\locales")
+    i18n.load_path.append(".\\locales")
     i18n.set("file_format", "yml")
     i18n.set("filename_format", "{namespace}.{format}")
     i18n.set("skip_locale_root_data", True)
