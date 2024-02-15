@@ -188,7 +188,6 @@ class UIComponents(metaclass=UIBase):
         tooltip.ToolTip.create_tooltip(self.label_speed, i18n.t('main.tooltip_label_speed'))
         tooltip.ToolTip.create_tooltip(self.speed_menu, i18n.t('main.tooltip_field_speed'))
         position = self.speed_menu.current()
-        print(self.speed_menu.current())
         self.speed_menu.config(values=i18n.t('main.speeds', count=3)[:])
         self.speed_menu.current(position)
 
