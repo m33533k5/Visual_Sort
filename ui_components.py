@@ -1,15 +1,12 @@
-import tkinter
-from tkinter import ttk
-from tkinter.messagebox import showinfo
-
-import i18n
-
-import tooltip
-from constants import *
-import constants
-from controller import Controller
-from data.import_data import ImportData
-from data.export_data import ExportData
+import tkinter  # Grundlegende GUI-Bibliothek für Python
+from tkinter import ttk  # Erweiterte GUI-Komponenten wie verbesserte Versionen von Standard-Widgets
+import i18n  # Internationalisierungsbibliothek für Übersetzungen
+import tooltip  # Benutzerdefinierte Modul für Tooltips
+from constants import *  # Importiert Konstanten, wahrscheinlich für Farben, Sprachen, etc.
+import constants  # Direkter Import, um Zugriff auf spezifische Konstanten zu haben
+from controller import Controller  # Kontrolllogik für die Anwendung
+from data.import_data import ImportData  # Modul zum Importieren von Daten
+from data.export_data import ExportData  # Modul zum Exportieren von Daten
 
 
 class UIBase(type):
@@ -66,9 +63,15 @@ class UIComponents(metaclass=UIBase):
     algo_list = []
 
     def set_list(self, list):
+        """
+        Setzt die Liste der Algorithmen, die in der GUI verwendet werden sollen.
+        """
         self.algo_list = list
 
     def set_language(self, language):
+        """
+        Ändert die Sprache der GUI entsprechend der Auswahl und aktualisiert UI-Elemente.
+        """
         i18n.set('locale', language)
         self.update_ui_with_translations()
 
@@ -111,10 +114,20 @@ class UIComponents(metaclass=UIBase):
         self.label_steps.place(x=10, y=115, width=150, height=25)
         self.label_ranking.place(x=10, y=190, width=150, height=25)
 
-        # Konfiguration der Dropdown-Menüs für Algorithmusauswahl und Geschwindigkeit
+        # Die verfügbaren Optionen für die Geschwindigkeit werden internationalisiert geladen, was bedeutet,
+        # dass die Texte der Optionen je nach ausgewählter Sprache angepasst werden. 'count=3' gibt an, dass es drei
+        # Geschwindigkeitsoptionen gibt, deren Texte aus den internationalisierten Dateien geladen werden.
         self.speed_menu = ttk.Combobox(self.ui_frame, values=i18n.t('main.speeds', count=3)[:])
-        # self.speed_menu.bind('<<ComboboxSelected>>', controller.set_speed(algo_list, self.speed_menu))
+
+        # Bindet ein Ereignis an die Combobox, das ausgelöst wird, wenn der Benutzer eine Option auswählt. Das
+        # Ereignis ruft die Methode `self.set_speed` auf, welche die Geschwindigkeit der
+        # Sortieralgorithmus-Visualisierung entsprechend der Auswahl des Benutzers anpasst. Diese Methode wird später
+        # im Code definiert und implementiert die Logik, um die Zeit zwischen den Sortierschritten basierend auf der
+        # gewählten Geschwindigkeit zu ändern.
         self.speed_menu.bind('<<ComboboxSelected>>', self.set_speed)
+
+        # Konfiguriert die Combobox so, dass der aktuell ausgewählte Wert (d.h. die Geschwindigkeitseinstellung) als
+        # Textvariable verwendet wird.
         self.speed_menu.config(textvariable=i18n.t('main.speeds', count=3)[self.speed_menu.current()])
         self.speed_menu.place(x=220, y=45, width=150, height=25)
         self.speed_menu.current(0)  # Standardauswahl
@@ -150,30 +163,39 @@ class UIComponents(metaclass=UIBase):
     def set_speed(self, event):
         """
         Bestimmt die Geschwindigkeit der Visualisierung basierend auf der Benutzerauswahl.
-
-        :param speed_menu: Das Dropdown-Menü, aus dem die Geschwindigkeit ausgewählt wird.
-        :return: Die gewählte Geschwindigkeit als Verzögerung zwischen den Sortierschritten.
         """
-        algo_list = [list(element.values())[0] for element in self.algo_list]  # Extraktion der Namen für die UI
-        # Auswahl der Geschwindigkeit basierend auf der Menüauswahl
+        # Jedes Element in `self.algo_list` ist ein Dictionary, das ein Sortieralgorithmus-Objekt enthält.
+        # Diese Zeile geht jedes Dictionary in der Liste durch, greift auf sein erstes Wertelement zu
+        # (das Sortieralgorithmus-Objekt) und speichert es in einer neuen Liste `algo_list`.
+        algo_list = [list(element.values())[0] for element in self.algo_list]
 
+        # Überprüft, ob das Geschwindigkeits-Auswahlmenü (speed_menu) initialisiert wurde. Ist dies nicht der Fall,
+        # wird für alle Algorithmen eine Standardgeschwindigkeit eingestellt. Diese Schleife setzt die Zeit zwischen
+        # den Sortierschritten (time_tick) auf 0.001 Sekunden für jeden Algorithmus, was einer sehr schnellen
+        # Ausführung entspricht, und kehrt dann aus der Funktion zurück, ohne weitere Bedingungen zu prüfen.
         if self.speed_menu is None:
             [element.set_time_tick(0.001) for element in algo_list]
             return
+
+        # Wenn der Benutzer die langsamste Geschwindigkeit (Index 2) gewählt hat,
+        # wird `set_time_tick` auf 0.3 Sekunden für jeden Algorithmus gesetzt, was die Visualisierung deutlich verlangsamt.
         if self.speed_menu.current() == 2:
             [element.set_time_tick(0.3) for element in algo_list]
+
+        # Wenn der Benutzer eine mittlere Geschwindigkeit (Index 1) gewählt hat,
+        # wird `set_time_tick` auf 0.01 Sekunden für jeden Algorithmus gesetzt, was einer mittleren Ausführungsgeschwindigkeit entspricht.
         elif self.speed_menu.current() == 1:
             [element.set_time_tick(0.01) for element in algo_list]
+
+        # Wenn keine der obigen Bedingungen zutrifft (d.h., der Benutzer hat die schnellste Geschwindigkeit oder einen
+        # nicht spezifizierten Wert gewählt), wird `set_time_tick` auf 0.001 Sekunden für jeden Algorithmus gesetzt,
+        # was die schnellstmögliche Ausführung ohne Verzögerung bedeutet.
         else:
             [element.set_time_tick(0.001) for element in algo_list]
-
 
     def update_ui_with_translations(self):
         """
         Aktualisiert die UI-Komponenten mit den entsprechenden Übersetzungen.
-
-        :param translations: Das configparser Objekt mit den geladenen Übersetzungen.
-        :param ui_components: Ein Objekt, das die UI-Komponenten enthält, die aktualisiert werden sollen.
         """
         # Aktualisiere den Titel des Fensters mit der übersetzten Zeichenkette.
         self.window.title(i18n.t("main.window_title"))
@@ -187,8 +209,19 @@ class UIComponents(metaclass=UIBase):
         self.label_speed.config(text=i18n.t('main.label_speed'), bg=WHITE)
         tooltip.ToolTip.create_tooltip(self.label_speed, i18n.t('main.tooltip_label_speed'))
         tooltip.ToolTip.create_tooltip(self.speed_menu, i18n.t('main.tooltip_field_speed'))
+
+        # Speichert die aktuell ausgewählte Position im Geschwindigkeits-Dropdown-Menü, um sie nach der
+        # Aktualisierung der Werte wiederherstellen zu können.
         position = self.speed_menu.current()
+
+        # Aktualisiert die Werte im Geschwindigkeits-Dropdown-Menü (speed_menu) basierend auf den internationalisierten
+        # Texten für die Geschwindigkeitsoptionen. Dies ist nützlich, um die Geschwindigkeitsauswahloptionen dynamisch
+        # anzupassen, wenn sich die Spracheinstellung ändert.
         self.speed_menu.config(values=i18n.t('main.speeds', count=3)[:])
+
+        # Stellt die vorher ausgewählte Position im Dropdown-Menü wieder her. Dies ist wichtig, da durch das Aktualisieren
+        # der Werte die aktuelle Auswahl zurücksetzt. Durch das Wiederherstellen der Position bleibt die
+        # Benutzerauswahl erhalten, auch wenn die Texte im Dropdown-Menü geändert wurden.
         self.speed_menu.current(position)
 
         self.label_size.config(text=i18n.t('main.label_size'), bg=WHITE)

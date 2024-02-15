@@ -1,6 +1,7 @@
-import tkinter
-import i18n
+import tkinter  # Importiert das tkinter Modul für die GUI
+import i18n  # Importiert das i18n Modul für die Internationalisierung
 
+# Importiert verschiedene Komponenten und Algorithmen
 from constants import *
 from controller import Controller
 from algorithms.bubble_sort import BubbleSort
@@ -14,8 +15,8 @@ from graphmanager.graph import Graph
 from graphmanager.graph_manager import GraphManager
 from ui_components import UIComponents
 
-
 def main():
+    # Konfiguriert den Pfad und die Einstellungen für die Internationalisierung
     i18n.load_path.append(".\\locales")
     i18n.set("file_format", "yml")
     i18n.set("filename_format", "{namespace}.{format}")
@@ -24,29 +25,30 @@ def main():
     i18n.set('fallback', 'en')
     i18n.set('locale', 'de')
 
-    # Initialisierung der Steuerelemente für die Benutzeroberfläche
-    algorithm_name = tkinter.StringVar()  # Auswahl des Sortieralgorithmus
-    array_size = tkinter.IntVar(value=100)  # Größe des zu sortierenden Arrays
-    steps = tkinter.IntVar(value=0)  # Anzahl der durchgeführten Schritte
-    ranking = {}  # Speichert Ranginformationen, z.B. für Vergleichszwecke
+    # Initialisiert tkinter Variablen und Datenstrukturen
+    algorithm_name = tkinter.StringVar()  # Hält die Auswahl des Sortieralgorithmus
+    array_size = tkinter.IntVar(value=100)  # Standardgröße des zu sortierenden Arrays
+    steps = tkinter.IntVar(value=0)  # Zählt die Anzahl der Sortierschritte
+    ranking = {}  # Dient zur Speicherung von Ranginformationen
 
+    # Initialisiert die UI-Komponenten
     ui_components = UIComponents()
 
-    # Zeitintervall basierend auf der ausgewählten Geschwindigkeit
+    # Initialisiert die Liste der Sortieralgorithmen und deren Namen
     algo_list, algo_names = initialize_algo_list()
     ui_components.set_list(algo_list)
     ui_components.setup_gui(algorithm_name, algo_names, steps, ranking, algo_list, array_size)
 
-    # Erstellung und Konfiguration des Graph-Objekts zur Visualisierung
+    # Erstellt und konfiguriert das Graph-Objekt für die Visualisierung
     graph_manager = GraphManager()
     graph = Graph(ui_components.canvas, ui_components.window)
-    graph_manager.attach(graph)  # Verknüpfung des Graph-Objekts mit dem GraphManager
+    graph_manager.attach(graph)  # Verbindet das Graph-Objekt mit dem GraphManager
 
+    # Startet die tkinter Event-Schleife
     ui_components.window.mainloop()
 
-
 def initialize_algo_list():
-    # Initialisierung der Sortieralgorithmen mit dem eingestellten Zeitintervall
+    # Erstellt Instanzen der Sortieralgorithmen
     bubble_sort = BubbleSort()
     counting_sort = CountingSort()
     heap_sort = HeapSort()
@@ -55,7 +57,7 @@ def initialize_algo_list():
     quick_sort = QuickSort()
     selection_sort = SelectionSort()
 
-    # Mapping der Algorithmusnamen zu den entsprechenden Objekten
+    # Erstellt eine Liste mit den Algorithmen und deren Namen für die UI
     algo_list = [{BUBBLE_SORT: bubble_sort},
                  {COUNTING_SORT: counting_sort},
                  {HEAP_SORT: heap_sort},
@@ -63,11 +65,9 @@ def initialize_algo_list():
                  {MERGE_SORT: merge_sort},
                  {QUICK_SORT: quick_sort},
                  {SELECTION_SORT: selection_sort}]
-    algo_names = [list(d.keys())[0] for d in algo_list]  # Extraktion der Namen für die UI
-
+    algo_names = [list(d.keys())[0] for d in algo_list]  # Extrahiert die Namen der Algorithmen
 
     return algo_list, algo_names
-
 
 if __name__ == '__main__':
     main()

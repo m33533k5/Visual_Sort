@@ -20,7 +20,6 @@ class SortAlgorithm:
     def __init__(self):
         """
         Initialisiert ein Sort_Algorithm-Objekt mit einer Verzögerung für die Visualisierung.
-
         """
         self.time_tick = 0.001  # Verzögerung für die Visualisierung
         self.data = []  # Die zu sortierenden Daten
